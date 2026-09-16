@@ -1,0 +1,36 @@
+BASELINE EVALUATION
+======================================================================
+Training examples: 700
+Golden examples: 200
+
+Majority training intent: ORDER_DELIVERY
+
+1. TRIVIAL BASELINE — MAJORITY CLASS
+----------------------------------------------------------------------
+Accuracy: 0.3700
+Macro Precision: 0.0370
+Macro Recall: 0.1000
+Macro F1: 0.0370
+Weighted F1: 0.1999
+
+2. SIMPLE BASELINE — TF-IDF + LOGISTIC REGRESSION
+----------------------------------------------------------------------
+Accuracy: 0.5200
+Macro Precision: 0.3306
+Macro Recall: 0.3284
+Macro F1: 0.3306
+Weighted F1: 0.5159
+
+TF-IDF CONFUSION MATRIX
+----------------------------------------------------------------------
+                         pred_ACCOUNT_ACCESS  pred_COMPLAINT_FEEDBACK  pred_ORDER_DELIVERY  pred_OTHER  pred_PAYMENT_BILLING  pred_PRICING_PROMOTIONS  pred_PRIME_MEMBERSHIP  pred_PRODUCT_CONTENT  pred_RETURN_REFUND  pred_TECHNICAL_SUPPORT
+gold_ACCOUNT_ACCESS                        2                        1                    2           1                     0                        0                      0                     0                   3                       0
+gold_COMPLAINT_FEEDBACK                    1                       11                    1           3                     1                        1                      1                     0                   3                       0
+gold_ORDER_DELIVERY                        0                        3                   51           8                     2                        2                      2                     2                   3                       1
+gold_OTHER                                 5                        2                    4          25                     1                        1                      1                     0                   0                       1
+gold_PAYMENT_BILLING                       0                        0                    2           3                     2                        0                      1                     0                   2                       1
+gold_PRICING_PROMOTIONS                    0                        0                    1           2                     1                        0                      0                     0                   0                       0
+gold_PRIME_MEMBERSHIP                      0                        1                    0           1                     0                        0                      0                     0                   0                       1
+gold_PRODUCT_CONTENT                       0                        1                    1           4                     0                        0                      0                     1                   1                       3
+gold_RETURN_REFUND                         1                        0                    6           1                     1                        0                      0                     1                   6                       0
+gold_TECHNICAL_SUPPORT                     0                        1                    1           2                     0                        0                      0                     0                   0                       6

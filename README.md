@@ -305,12 +305,14 @@ A more accurate conclusion is:
 ## 8. Next-Week Plan
 
 ### Intent
+
 - Add targeted boundary examples, especially delivery vs complaint.
 - Increase rare-intent coverage.
 - Add multilingual and short-message examples.
 - Add deterministic precedence rules for high-signal operational phrases.
 
 ### Retrieval
+
 - Better normalization and query expansion.
 - Language-aware retrieval.
 - Stronger semantic embeddings.
@@ -318,6 +320,7 @@ A more accurate conclusion is:
 - Retrieval recall/evidence relevance evaluation.
 
 ### Reply Generation
+
 - Evidence-first prompting.
 - Unsupported-claim validator.
 - Avoid unsupported promises.
@@ -325,6 +328,7 @@ A more accurate conclusion is:
 - Preserve the customer's language when appropriate.
 
 ### Evaluation
+
 - Larger golden set.
 - More rare-intent coverage.
 - Larger human review sample.
@@ -335,7 +339,9 @@ A more accurate conclusion is:
 
 ## 9. Reproducibility
 
-### Setup
+### Quick Start
+
+#### 1. Install dependencies
 
 ```powershell
 python -m venv .venv
@@ -344,16 +350,62 @@ pip install -r requirements.txt
 $env:PYTHONPATH="."
 ```
 
-### Ollama
+#### 2. Start Ollama
+
+Install Ollama, then download the model:
 
 ```powershell
 ollama pull qwen3:8b
+```
+
+Start the model:
+
+```powershell
 ollama run qwen3:8b
 ```
 
-### Core commands
+Keep Ollama running in a separate terminal.
 
-Sanity test:
+#### 3. Run the Streamlit application
+
+From the project root:
+
+```powershell
+streamlit run app\support_app.py
+```
+
+Open:
+
+```text
+http://localhost:8501
+```
+
+#### 4. Run the automated tests
+
+```powershell
+python -m pytest -q
+```
+
+Expected result:
+
+```text
+9 passed
+```
+
+#### 5. Run the evaluation pipeline
+
+```powershell
+$env:PYTHONPATH="."
+
+python scripts\evaluate_baselines.py
+python scripts\evaluate_golden.py
+python scripts\evaluate_replies.py
+python scripts\judge_replies.py
+```
+
+### Additional Commands
+
+#### Intent classifier sanity test
 
 ```powershell
 $env:PYTHONPATH="."
@@ -366,62 +418,19 @@ Expected:
 Test accuracy: 10/10 (100.0%)
 ```
 
-Baselines:
-
-```powershell
-$env:PYTHONPATH="."
-python scripts\evaluate_baselines.py
-```
-
-Golden evaluation:
-
-```powershell
-$env:PYTHONPATH="."
-python scripts\evaluate_golden.py
-```
-
-Reply evaluation:
-
-```powershell
-$env:PYTHONPATH="."
-python scripts\evaluate_replies.py
-```
-
-LLM judge:
-
-```powershell
-$env:PYTHONPATH="."
-python scripts\judge_replies.py
-```
-
-Failure analysis:
+#### Failure analysis
 
 ```powershell
 $env:PYTHONPATH="."
 python scripts\make_failure_analysis.py
 ```
 
-Tests:
+#### Decision log
 
 ```powershell
-python -m pytest -q
+$env:PYTHONPATH="."
+python scripts\create_decision_log.py
 ```
-
-Current test suite:
-
-```text
-9 passed
-```
-
-Streamlit demo:
-
-```powershell
-streamlit run app\support_app.py
-```
-
-Local URL:
-
-`http://localhost:8501`
 
 ---
 
